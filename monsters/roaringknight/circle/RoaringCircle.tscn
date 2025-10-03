@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://co5oi4ad200o7"]
+
+[ext_resource type="Script" uid="uid://brvtlgnq22lwp" path="res://monsters/roaringknight/circle/roar_circle.gd" id="1_xkulc"]
+
+[node name="RoaringCircle" type="Sprite2D"]
+script = ExtResource("1_xkulc")

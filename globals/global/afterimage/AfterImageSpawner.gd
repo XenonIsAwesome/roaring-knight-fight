@@ -3,8 +3,7 @@ class_name AfterImageSpawner
 
 @export var enable_after_image: bool = false
 @export var after_image_rate: float = 5   # how many per second
-@export var after_image_speed: float = 0.0   # optional movement for the ghosts
-@export var after_image_dir: Vector2 = Vector2.ZERO
+@export var after_image_speeds: Vector2 = Vector2.ZERO
 
 var _timer: float = 0.0
 
@@ -38,7 +37,7 @@ func spawn_afterimage():
 	
 	afterimage.z_index = z_index - 1
 	
-	afterimage.set("hspeed", after_image_dir.x)
-	afterimage.set("vspeed", after_image_dir.y)
+	afterimage.set("hspeed", after_image_speeds.x)
+	afterimage.set("vspeed", after_image_speeds.y)
 
 	get_parent().add_child(afterimage)

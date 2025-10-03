@@ -1,20 +1,31 @@
-[gd_scene load_steps=19 format=3 uid="uid://bu6re3gnpw8td"]
+[gd_scene load_steps=29 format=3 uid="uid://bu6re3gnpw8td"]
 
 [ext_resource type="Texture2D" uid="uid://b3pmih0ewrlj2" path="res://monsters/roaringknight/res/idle.png" id="1_i13gu"]
 [ext_resource type="Script" uid="uid://cnjekp3v6dvd6" path="res://monsters/roaringknight/roaringknight.gd" id="1_oiv07"]
+[ext_resource type="Script" uid="uid://djmls7q822ygv" path="res://monsters/roaringknight/hover.gd" id="2_wjjnm"]
 [ext_resource type="Texture2D" uid="uid://cwe4v8st8cycn" path="res://monsters/roaringknight/res/turning.png" id="2_ywvyc"]
+[ext_resource type="Shader" uid="uid://m7w08u608gp0" path="res://monsters/roaringknight/whiten.gdshader" id="3_eyf5a"]
 [ext_resource type="Script" uid="uid://byn613bubrx24" path="res://monsters/roaringknight/knight.gd" id="3_gdkc7"]
 [ext_resource type="Texture2D" uid="uid://1e12b67adg10" path="res://monsters/roaringknight/res/droop.png" id="3_oiv07"]
 [ext_resource type="Texture2D" uid="uid://dfroqe6yqmlcr" path="res://monsters/roaringknight/res/roar.png" id="4_hmf54"]
 [ext_resource type="Texture2D" uid="uid://drrpi4dpit3ie" path="res://monsters/roaringknight/res/preroar.png" id="5_gdkc7"]
+[ext_resource type="Texture2D" uid="uid://vtw0m2bg2hp3" path="res://monsters/roaringknight/res/sword/sword.png" id="5_klarx"]
 [ext_resource type="Texture2D" uid="uid://siickp3r4h4w" path="res://monsters/roaringknight/res/exit_droop.png" id="6_3kfwm"]
+[ext_resource type="Script" uid="uid://bwna0klv3rjq7" path="res://monsters/roaringknight/sword.gd" id="6_hyeqh"]
+[ext_resource type="Texture2D" uid="uid://de16gs0u2v64f" path="res://monsters/roaringknight/res/equip_sword.png" id="9_gdkc7"]
+[ext_resource type="Texture2D" uid="uid://q1uvunfa565u" path="res://monsters/roaringknight/res/sword_appear.png" id="10_3kfwm"]
+[ext_resource type="PackedScene" uid="uid://co5oi4ad200o7" path="res://monsters/roaringknight/circle/RoaringCircle.tscn" id="14_yl4lm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eyf5a"]
+shader = ExtResource("3_eyf5a")
+shader_parameter/whiten_amount = 0.0
 
 [sub_resource type="Animation" id="Animation_n5kxa"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Knight:frame")
+tracks/0/path = NodePath("Hover/Knight:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -26,7 +37,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Knight:texture")
+tracks/1/path = NodePath("Hover/Knight:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -38,7 +49,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Knight:hframes")
+tracks/2/path = NodePath("Hover/Knight:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -46,6 +57,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hover/Knight:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_bwevq"]
@@ -56,7 +79,7 @@ step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Knight:frame")
+tracks/0/path = NodePath("Hover/Knight:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -68,7 +91,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Knight:texture")
+tracks/1/path = NodePath("Hover/Knight:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -80,7 +103,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Knight:hframes")
+tracks/2/path = NodePath("Hover/Knight:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -88,6 +111,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hover/Knight:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_hyeqh"]
@@ -98,7 +133,7 @@ step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Knight:frame")
+tracks/0/path = NodePath("Hover/Knight:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -110,7 +145,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Knight:texture")
+tracks/1/path = NodePath("Hover/Knight:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -122,7 +157,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Knight:hframes")
+tracks/2/path = NodePath("Hover/Knight:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -131,15 +166,80 @@ tracks/2/keys = {
 "update": 1,
 "values": [4]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hover/Knight:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(-8, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3kfwm"]
+resource_name = "equip_sword"
+length = 2.0000067
+step = 0.06666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hover/Knight:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0, 8, 18]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hover/Knight:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_gdkc7")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hover/Knight:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [19]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hover/Knight:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(43, -22)]
+}
 
 [sub_resource type="Animation" id="Animation_oilbf"]
 resource_name = "exit_droop"
-length = 0.6
+length = 1.2000201
 step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Knight:frame")
+tracks/0/path = NodePath("Hover/Knight:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -151,7 +251,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Knight:texture")
+tracks/1/path = NodePath("Hover/Knight:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -163,7 +263,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Knight:hframes")
+tracks/2/path = NodePath("Hover/Knight:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -171,6 +271,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [6]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hover/Knight:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(-9, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_yl4lm"]
@@ -181,7 +293,7 @@ step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Knight:frame")
+tracks/0/path = NodePath("Hover/Knight:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -193,7 +305,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Knight:texture")
+tracks/1/path = NodePath("Hover/Knight:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -205,7 +317,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Knight:hframes")
+tracks/2/path = NodePath("Hover/Knight:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -213,6 +325,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [10]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hover/Knight:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_klarx"]
@@ -223,7 +347,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Knight:frame")
+tracks/0/path = NodePath("Hover/Knight:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -235,26 +359,38 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Knight:hframes")
+tracks/1/path = NodePath("Hover/Knight:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [2]
+"values": [ExtResource("1_i13gu")]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Knight:texture")
+tracks/2/path = NodePath("Hover/Knight:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_i13gu")]
+"values": [2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hover/Knight:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_wjjnm"]
@@ -265,7 +401,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Knight:frame")
+tracks/0/path = NodePath("Hover/Knight:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -277,7 +413,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Knight:hframes")
+tracks/1/path = NodePath("Hover/Knight:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -289,7 +425,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Knight:texture")
+tracks/2/path = NodePath("Hover/Knight:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -297,6 +433,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("1_i13gu")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hover/Knight:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_eyf5a"]
@@ -307,7 +455,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Knight:frame")
+tracks/0/path = NodePath("Hover/Knight:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -319,7 +467,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Knight:texture")
+tracks/1/path = NodePath("Hover/Knight:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -331,7 +479,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Knight:hframes")
+tracks/2/path = NodePath("Hover/Knight:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -339,6 +487,71 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hover/Knight:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(32, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vrmua"]
+resource_name = "sword_appear"
+length = 1.50005
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hover/Knight:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hover/Knight:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("10_3kfwm")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hover/Knight:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hover/Knight:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(4, -28)]
 }
 
 [sub_resource type="Animation" id="Animation_ox60p"]
@@ -348,7 +561,7 @@ step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Knight:frame")
+tracks/0/path = NodePath("Hover/Knight:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -360,7 +573,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Knight:texture")
+tracks/1/path = NodePath("Hover/Knight:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -372,7 +585,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Knight:hframes")
+tracks/2/path = NodePath("Hover/Knight:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -381,32 +594,59 @@ tracks/2/keys = {
 "update": 1,
 "values": [10]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hover/Knight:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q7xd6"]
 _data = {
 &"RESET": SubResource("Animation_n5kxa"),
 &"charge_roar": SubResource("Animation_bwevq"),
 &"droop": SubResource("Animation_hyeqh"),
+&"equip_sword": SubResource("Animation_3kfwm"),
 &"exit_droop": SubResource("Animation_oilbf"),
 &"idle_aura_farming": SubResource("Animation_yl4lm"),
 &"idle_nosword": SubResource("Animation_klarx"),
 &"idle_sword": SubResource("Animation_wjjnm"),
 &"roar": SubResource("Animation_eyf5a"),
+&"sword_appear": SubResource("Animation_vrmua"),
 &"turning": SubResource("Animation_ox60p")
 }
 
 [node name="RoaringKnight" type="Node2D"]
 script = ExtResource("1_oiv07")
 
-[node name="Knight" type="Sprite2D" parent="."]
-position = Vector2(558, 158)
+[node name="Hover" type="Node2D" parent="."]
+script = ExtResource("2_wjjnm")
+
+[node name="Knight" type="Sprite2D" parent="Hover"]
+material = SubResource("ShaderMaterial_eyf5a")
 scale = Vector2(2, 2)
 texture = ExtResource("1_i13gu")
 hframes = 2
 frame = 1
 script = ExtResource("3_gdkc7")
 enable_after_image = true
-after_image_dir = Vector2(2, 0)
+after_image_rate = 10.0
+after_image_speeds = Vector2(2, 0)
+
+[node name="Sword" type="Sprite2D" parent="Hover"]
+visible = false
+z_index = -1
+position = Vector2(-33, -107)
+scale = Vector2(2, 2)
+texture = ExtResource("5_klarx")
+script = ExtResource("6_hyeqh")
+flash_times = 15
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -414,3 +654,13 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="RoaringCircle" parent="." instance=ExtResource("14_yl4lm")]
+visible = false
+start_inner_color = Color(0, 0, 0, 0.75000006)
+goal_inner_color = Color(0, 0, 0, 0.7490196)
+start_outer_color = Color(1, 1, 1, 0.7490196)
+goal_outer_color = Color(0.5019608, 0, 0, 0.7490196)
+growth = 20.0

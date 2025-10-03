@@ -1,32 +1,48 @@
 extends AfterImageSpawner
 
-@export var hovering: bool = true
-@export var hover_speed: float = 2.0
-@export var hover_height: float = 6.0
+@onready var whiten_mat := material as ShaderMaterial
+@export var whiten: bool = false
+var whiten_timer: float = 0
+var whiten_percent: float = 0
 
-var actually_hovering: bool
-var hover_time: float = 0.0
-var initial_y = 0
+var circle
 
-func _ready():
-	actually_hovering = hovering
-	initial_y = position.y
-
-func _process(delta: float) -> void:
+func _process(delta: float):
 	super._process(delta)
 	
-	position.y = initial_y + get_y_position_offset(delta)
-
-func get_y_position_offset(delta: float) -> float:
-	var offset: float = 0;
-	
-	if actually_hovering:
-		hover_time += delta
-		offset += cos((hover_time / hover_speed) * TAU) * hover_height
+	if whiten:
+		whiten_timer += delta
+		whiten_percent = clamp(whiten_timer, 0, 1)
+		
+		queue_redraw()
 	else:
-		hover_time = 0
+		whiten_timer = 0
+		whiten_percent = 0
+
+
+func _draw():
+	whiten_mat.set_shader_parameter("whiten_amount", whiten_percent)
+
+
+func spawn_circle():
+	var circle_scene = preload("res://monsters/roaringknight/circle/RoaringCircle.tscn")
+	circle = circle_scene.instantiate() as Sprite2D
 	
-	if round(offset) == 0:
-		actually_hovering = hovering
+	circle.position = position
+	circle.z_index = z_index + 1
 	
-	return offset
+	circle.set("start_inner_color", Color(0,0,0,0.25))
+	circle.set("goal_inner_color", Color(0,0,0,0.25))
+	circle.set("start_outer_color", Color(1,1,1,0.75))
+	circle.set("goal_outer_color", Color(0.5,0,0,0.75))
+	circle.set("fade_speed", 14)
+	
+	circle.set("start_size", 0)
+	circle.set("goal_size", 960)
+	circle.set("growth", 20)
+	
+	get_parent().add_child(circle)
+
+
+func remove_circle():
+	circle.set("destroy_me", true)
